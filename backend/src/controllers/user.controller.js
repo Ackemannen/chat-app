@@ -147,3 +147,16 @@ export async function getOutgoingFriendReqs(req, res) {
         res.status(500).json({ message: "Internal Server Error" });
     }
 }
+
+export async function getSearchUsers(req, res) {
+    try {
+        const users = await User.find({
+            username: { $regex: req.params.query, $options: "i" },
+            _id: { $ne: req.user.id } // Exclude current user
+        }).select("username profilePic location bio");
+        res.status(200).json(users);
+    } catch (error) {
+        console.error("Error in searchUsers controller", error.message);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+}

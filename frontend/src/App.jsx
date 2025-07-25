@@ -12,6 +12,7 @@ import PageLoader from "./components/PageLoader";
 import useAuthUser from "./hooks/useAuthUser";
 import Layout from "./components/Layout";
 import { useThemeStore } from "./store/useThemeStore";
+import Friends from "./pages/Friends";
 
 const App = () => {
 
@@ -32,6 +33,7 @@ const App = () => {
 
         <Route path="/profile" element={isAuthenticated ? <Profile /> : <Navigate to="/login" />} />
         <Route path="/notifications" element={isAuthenticated ? (<Layout showSidebar={true}><Notifications /></Layout>) : <Navigate to="/login" />} />
+        <Route path="/friends" element={isAuthenticated ? (<Layout showSidebar={true}><Friends /></Layout>) : <Navigate to="/login" />} />
         
         <Route path="/call/:id" element={isAuthenticated ? <Call /> : <Navigate to="/login" />} />
         <Route path="/chat/:id" element={isAuthenticated ? <Layout showSidebar={false}><ChatPage /></Layout> : <Navigate to="/login" />} />

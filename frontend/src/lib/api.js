@@ -65,3 +65,8 @@ export async function getStreamToken() {
       return res.data;
 }
 
+export async function getSearchUsers(query) {
+      const res = await axiosInstance.get(`/users/search/${query}`);
+      return res.data;
+}
+
